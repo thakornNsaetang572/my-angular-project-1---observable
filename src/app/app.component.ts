@@ -14,9 +14,16 @@ export class AppComponent {
   title = 'my-angular-project-1';
   responseData$: Observable<any> | undefined;
   loadData: boolean = false;
+
   constructor(private http: HttpClient){}
-  getData(){
-    this.responseData$ = this.http.get('https://jsonplaceholder.typicode.com/users')
-    this.loadData = true;
+  postData(){
+    const user = {
+      id: 103,
+      name: 'Thakorn Saetang',
+      email: 'Thakornsaetang@gmai;.com'
+    }
+    this.http.post('http://localhost:3000/user', user).subscribe((response)=>{
+      console.log('User Updaated', response);
+    })
   }
 }
